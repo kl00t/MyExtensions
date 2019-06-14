@@ -8,6 +8,15 @@ namespace MyExtensions.UnitTests.Extensions
     public class ExtensionsTests
     {
         [Test]
+        public void ToArray_TakesIEnumerableList_ReturnsArray()
+        {
+            var myList = new List<int?> { 0, 1, 2, 4, 8, 16, 32, 64 };
+            var actual = myList.ToArray();
+            Assert.IsInstanceOf<int?[]>(actual);
+            Assert.AreEqual(8, actual.Length);
+        }
+
+        [Test]
         [TestCase("  123,  456,  789  ")]
         [TestCase(" 123, 456, 789 ")]
         [TestCase("123, 456, 789")]
