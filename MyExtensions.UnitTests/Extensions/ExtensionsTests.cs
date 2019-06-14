@@ -21,7 +21,7 @@ namespace MyExtensions.UnitTests.Extensions
 
         [Test]
         [TestCase(9.9999, 2, 10.0)]
-        public void Round_ReturnsCorrectResult(double input, int round, double expected)
+        public void Round_ReturnsCorrectResult(double? input, int round, double expected)
         {
             var actual = input.Round(round);
 
@@ -31,7 +31,7 @@ namespace MyExtensions.UnitTests.Extensions
 
         [Test]
         [TestCase(9.9999, 2, 10.0)]
-        public void RoundUp_ReturnsCorrectResult(double input, int round, double expected)
+        public void RoundUp_ReturnsCorrectResult(double? input, int round, double expected)
         {
             var actual = input.Round(round);
 

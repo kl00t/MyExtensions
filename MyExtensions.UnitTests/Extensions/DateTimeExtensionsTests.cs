@@ -8,7 +8,14 @@ namespace MyExtensions.UnitTests.Extensions
     [TestFixture]
     public class DateTimeExtensionsTests
     {
-        
+        [Test]
+        public void ToDateString_ReturnsEmptyStringWithIncorrectFormat()
+        {
+            const string myDateString = "20180231"; // 31st February 2018
+            var expected = string.Empty;
+            var actual = myDateString.ToDateString();
+            Assert.AreEqual(expected, actual);
+        }
 
         [Test]
         [TestCase("1", "Jan")]
