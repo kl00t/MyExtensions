@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MyExtensions.Extensions;
 using NUnit.Framework;
 
@@ -7,6 +8,24 @@ namespace MyExtensions.UnitTests.Extensions
     [TestFixture]
     public class ExtensionsTests
     {
+        [Test]
+        public void ToGuid_ReturnsValidGuidResult()
+        {
+            const string myGuidString = "F7A1DDA9-176A-4DB5-A5D3-4203BAE71DCE";
+            var actual = myGuidString.ToGuid();
+            Assert.IsInstanceOf<Guid>(actual);
+            Assert.AreEqual(myGuidString.ToLowerInvariant(), actual.ToString());
+        }
+
+        [Test]
+        public void ToGuid_ReturnsInvalidGuidResult()
+        {
+            const string myGuidString = "INVALID GUID STRING";
+            var actual = myGuidString.ToGuid();
+            Assert.IsInstanceOf<Guid>(actual);
+            Assert.AreEqual(Guid.Empty, actual);
+        }
+
         [Test]
         public void ToArray_TakesIEnumerableList_ReturnsArray()
         {
