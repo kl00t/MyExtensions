@@ -1,12 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
 namespace MyExtensions.Extensions
 {
     public static class Extensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        public static IEnumerable<int> SplitStringToListInts(this string value, char separator)
+        {
+            try
+            {
+                return value.Split(separator).Select(int.Parse);
+            }
+            catch (Exception)
+            {
+                return new List<int>().AsEnumerable();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="phrase"></param>
+        /// <returns></returns>
+        public static string TrimStringIncludingAndAfterPhrase(this string value, string phrase)
+        {
+            var index = value.IndexOf(phrase, StringComparison.Ordinal);
+            return index > 0 ? value.Substring(0, index) : value;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -204,115 +233,6 @@ namespace MyExtensions.Extensions
         public static string ToDelimitedList<T>(this T[] array)
         {
             return array == null ? "" : $"{string.Join(",", array)}";
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dateTime"></param>
-        /// <returns></returns>
-        public static string DateToString(this DateTime dateTime)
-        {
-            return string.Concat(dateTime.Year, "-", dateTime.Month, "-", dateTime.Day);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="period"></param>
-        /// <returns></returns>
-        public static string ToDay(this string period)
-        {
-            switch (period)
-            {
-                case "1":
-                    return "Sun";
-                case "2":
-                    return "Mon";
-                case "3":
-                    return "Tue";
-                case "4":
-                    return "Wed";
-                case "5":
-                    return "Thu";
-                case "6":
-                    return "Fri";
-                case "7":
-                    return "Sat";
-                default:
-                    return period;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="period"></param>
-        /// <returns></returns>
-        public static string ToMonth(this string period)
-        {
-            switch (period)
-            {
-                case "1":
-                    return "Jan";
-                case "2":
-                    return "Feb";
-                case "3":
-                    return "Mar";
-                case "4":
-                    return "Apr";
-                case "5":
-                    return "May";
-                case "6":
-                    return "Jun";
-                case "7":
-                    return "Jul";
-                case "8":
-                    return "Aug";
-                case "9":
-                    return "Sep";
-                case "10":
-                    return "Oct";
-                case "11":
-                    return "Nov";
-                case "12":
-                    return "Dec";
-                default:
-                    return period;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="period"></param>
-        /// <returns></returns>
-        public static string ToQuarter(this string period)
-        {
-            return string.IsNullOrEmpty(period) ? string.Empty : $"Q{period}";
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="period"></param>
-        /// <returns></returns>
-        public static string ToDateString(this string period)
-        {
-            if (string.IsNullOrEmpty(period))
-            {
-                return string.Empty;
-            }
-
-            try
-            {
-                var dt = DateTime.ParseExact(period, "yyyyMMdd", CultureInfo.InvariantCulture);
-                return dt.ToString("dd MMM yyyy", CultureInfo.InvariantCulture);
-            }
-            catch (FormatException)
-            {
-                return string.Empty;
-            }
         }
     }
 }

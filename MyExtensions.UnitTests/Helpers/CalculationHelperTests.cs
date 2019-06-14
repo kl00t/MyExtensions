@@ -7,6 +7,59 @@ namespace MyExtensions.UnitTests.Helpers
     [TestFixture]
     public class CalculationHelperTests
     {
+        private const int ValidValue = 5;
+        private const int ValidSum = 10;
+
+        [Test]
+        [TestCase(1, 10, 0.1)]
+        [TestCase(2, 10, 0.2)]
+        [TestCase(3, 10, 0.3)]
+        [TestCase(4, 10, 0.4)]
+        [TestCase(5, 10, 0.5)]
+        [TestCase(6, 10, 0.6)]
+        [TestCase(7, 10, 0.7)]
+        [TestCase(8, 10, 0.8)]
+        [TestCase(9, 10, 0.9)]
+        [TestCase(10, 10, 1.0)]
+        public void Calculator_Returns_Ratio_If_Sum_And_Value_Are_MoreThan_Zero(int value, int sum, double ratio)
+        {
+            var result = CalculationHelper.Ratio(value, sum);
+
+            Assert.That(result, Is.EqualTo(ratio));
+        }
+
+        [Test]
+        public void Calculator_Returns_Zero_If_Sum_IsNull()
+        {
+            var result = CalculationHelper.Ratio(ValidValue, null);
+
+            Assert.That(result, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Calculator_Returns_Zero_If_Sum_IsNot_MoreThan_Zero([Range(-1, 0)] int sum)
+        {
+            var result = CalculationHelper.Ratio(ValidValue, sum);
+
+            Assert.That(result, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Calculator_Returns_Zero_If_Value_IsNull()
+        {
+            var result = CalculationHelper.Ratio(null, ValidSum);
+
+            Assert.That(result, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Calculator_Returns_Zero_If_Value_IsNot_MoreThan_Zero([Range(-1, 0)] int value)
+        {
+            var result = CalculationHelper.Ratio(value, ValidSum);
+
+            Assert.That(result, Is.EqualTo(0));
+        }
+
         [Test]
         [TestCase(10, 10, 0)]
         [TestCase(9, 10, 1)]

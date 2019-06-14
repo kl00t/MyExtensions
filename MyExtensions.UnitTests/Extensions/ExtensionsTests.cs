@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MyExtensions.Extensions;
 using NUnit.Framework;
 
@@ -9,39 +8,46 @@ namespace MyExtensions.UnitTests.Extensions
     public class ExtensionsTests
     {
         [Test]
+        [TestCase("  123,  456,  789  ")]
+        [TestCase(" 123, 456, 789 ")]
+        [TestCase("123, 456, 789")]
+        [TestCase("123,456,789")]
+        public void SplitStringToListInts_ReturnsListOfIds(string inputString)
+        {
+            var expected = new List<int> { 123, 456, 789};
+
+            var actual = inputString.SplitStringToListInts(',');
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void SplitStringToListInts_Returns_Empty_List_When_Exception_Caught()
+        {
+            var myString = "throw an exception";
+
+            var actual = myString.SplitStringToListInts(',');
+
+            Assert.That(actual, Is.InstanceOf<IEnumerable<int>>());
+        }
+
+        [Test]
+        [TestCase("The quick brown fox jumps over the lazy dog", "fox", "The quick brown ")]
+        [TestCase("The quick brown fox jumps over the lazy dog", "dog", "The quick brown fox jumps over the lazy ")]
+        [TestCase("The quick brown fox jumps over the lazy dog", "", "The quick brown fox jumps over the lazy dog")]
+        [TestCase("", "jdksdjdsj", "")]
+        public void TrimStringIncludingAndAfterPhrase_ReturnsExpected(string inputString, string trimString, string expected)
+        {
+            Assert.AreEqual(expected, inputString.TrimStringIncludingAndAfterPhrase(trimString));
+        }
+
+        [Test]
         [TestCase("", 0)]
         [TestCase("0", 0)]
         [TestCase("1", 1)]
         public void TryParse_ReturnsCorrectResult(string input, int output)
         {
             Assert.AreEqual(output, input.TryParse(0));
-        }
-
-        [Test]
-        public void GetLatestNullableDate_DateReturnsCorrectResult_Null()
-        {
-            var myDates = new List<DateTime?>
-            {
-                null,
-                null,
-                null
-            };
-
-            Assert.IsNull(myDates.GetLatestNullableDate());
-        }
-
-        [Test]
-        public void GetLatestNullableDate_DateReturnsCorrectResult()
-        {
-            var myDates = new List<DateTime?>
-            {
-                null,
-                new DateTime(1979, 4, 21),
-                null,
-                new DateTime(2010, 4, 21)
-            };
-
-            Assert.AreEqual(new DateTime(2010, 4, 21), myDates.GetLatestNullableDate());
         }
 
         [Test]
@@ -134,70 +140,6 @@ namespace MyExtensions.UnitTests.Extensions
             var actual = myArray.ToSqlArray();
 
             Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void DateToString_ReturnsCorrectResultInStringFormat()
-        {
-            const string expected = "2018-4-21";
-
-            var myDateTime = new DateTime(2018, 4, 21);
-
-            Assert.AreEqual(expected, myDateTime.DateToString());
-        }
-
-        [Test]
-        [TestCase("1", "Sun")]
-        [TestCase("2", "Mon")]
-        [TestCase("3", "Tue")]
-        [TestCase("4", "Wed")]
-        [TestCase("5", "Thu")]
-        [TestCase("6", "Fri")]
-        [TestCase("7", "Sat")]
-        [TestCase("", "")]
-        public void ToDayExtension_ReturnsCorrectDayResult(string period, string expected)
-        {
-            Assert.AreEqual(expected, period.ToDay());
-        }
-
-        [Test]
-        [TestCase("1", "Jan")]
-        [TestCase("2", "Feb")]
-        [TestCase("3", "Mar")]
-        [TestCase("4", "Apr")]
-        [TestCase("5", "May")]
-        [TestCase("6", "Jun")]
-        [TestCase("7", "Jul")]
-        [TestCase("8", "Aug")]
-        [TestCase("9", "Sep")]
-        [TestCase("10", "Oct")]
-        [TestCase("11", "Nov")]
-        [TestCase("12", "Dec")]
-        [TestCase("", "")]
-        public void ToMonthExtension_ReturnsCorrectMonthResult(string period, string expected)
-        {
-            Assert.AreEqual(expected, period.ToMonth());
-        }
-
-        [Test]
-        [TestCase("1", "Q1")]
-        [TestCase("", "")]
-        public void ToQuarterExtension_ReturnsCorrectQuarterResult(string period, string expected)
-        {
-            Assert.AreEqual(expected, period.ToQuarter());
-        }
-
-        [Test]
-        [TestCase("20180228", "28 Feb 2018")]
-        [TestCase("20180401", "01 Apr 2018")]
-        [TestCase("20180104", "04 Jan 2018")]
-        [TestCase("20180101", "01 Jan 2018")]
-        [TestCase("20180911", "11 Sep 2018")]
-        [TestCase("20181109", "09 Nov 2018")]
-        [TestCase("", "")]
-        public void ToDateExtension_ReturnsCorrectDateResult(string period, string expected)
-        {
-            Assert.AreEqual(expected, period.ToDateString());
         }
 
         [Test]

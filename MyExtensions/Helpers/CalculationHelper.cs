@@ -3,6 +3,20 @@ namespace MyExtensions.Helpers
 {
     public static class CalculationHelper
     {
+        public static double Ratio(int? value, int? sum)
+        {
+            if (!(value > 0))
+            {
+                return 0;
+            }
+            if (!(sum > 0))
+            {
+                return 0;
+            }
+
+            return (double)(value / (double)sum);
+        }
+
         public static double? Difference(double? originalNumber, double? newNumber)
         {
             if (originalNumber.HasValue && newNumber.HasValue)
