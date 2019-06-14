@@ -152,5 +152,15 @@ namespace MyExtensions.UnitTests.Helpers
             var actualResult = CalculationHelper.DaysBetweenDates(startDate, endDate);
             Assert.AreEqual(expected, actualResult);
         }
+
+        [Test]
+        public void DateRange_ReturnsCorrectResults()
+        {
+            const int expected = 8;
+            var startDate = new DateTime(2018, 7, 10);
+            var endDate = new DateTime(2018, 7, 17);
+            var actual = CalculationHelper.DateRange(startDate, endDate);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
