@@ -9,6 +9,24 @@ namespace MyExtensions.UnitTests.Extensions
     public class ExtensionsTests
     {
         [Test]
+        [TestCase("99", 99)]
+        [TestCase("0", 0)]
+        public void TryParse_ReturnsResultWhenParsedSuccessfully(string myString, int expected)
+        {
+            var actual = myString.TryParse(5);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [TestCase("", 0)]
+        [TestCase("9.9", 0)]
+        public void TryParse_ReturnsDefaultResultWhenNotParsedSuccessfully(string myString, int expected)
+        {
+            var actual = myString.TryParse(0);
+            Assert.AreEqual(0, actual);
+        }
+
+        [Test]
         public void ToGuid_ReturnsValidGuidResult()
         {
             const string myGuidString = "F7A1DDA9-176A-4DB5-A5D3-4203BAE71DCE";
@@ -18,9 +36,10 @@ namespace MyExtensions.UnitTests.Extensions
         }
 
         [Test]
-        public void ToGuid_ReturnsInvalidGuidResult()
+        [TestCase("")]
+        [TestCase("INVALID GUID STRING")]
+        public void ToGuid_ReturnsInvalidGuidResult(string myGuidString)
         {
-            const string myGuidString = "INVALID GUID STRING";
             var actual = myGuidString.ToGuid();
             Assert.IsInstanceOf<Guid>(actual);
             Assert.AreEqual(Guid.Empty, actual);
