@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace MyExtensions.Extensions
 {
@@ -111,14 +112,7 @@ namespace MyExtensions.Extensions
                 return null;
             }
 
-            try
-            {
-                return Math.Round(value.Value, decimalPlaces);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                return 0;
-            }
+            return Round(value.Value, decimalPlaces);
         }
 
         /// <summary>

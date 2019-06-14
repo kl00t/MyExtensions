@@ -9,6 +9,72 @@ namespace MyExtensions.UnitTests.Extensions
     public class ExtensionsTests
     {
         [Test]
+        public void Round_ReturnsDefaultResultWhenNull()
+        {
+            double? input = null;
+
+            // ReSharper disable once ExpressionIsAlwaysNull
+            var actual = input.Round();
+
+            Assert.IsNull(actual);
+        }
+
+        [Test]
+        [TestCase(9.9999, 2, 10.0)]
+        public void Round_ReturnsCorrectResult(double input, int round, double expected)
+        {
+            var actual = input.Round(round);
+
+            Assert.IsInstanceOf<double>(actual);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [TestCase(9.9999, 2, 10.0)]
+        public void RoundUp_ReturnsCorrectResult(double input, int round, double expected)
+        {
+            var actual = input.Round(round);
+
+            Assert.IsInstanceOf<double>(actual);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ToArray_ReturnsIntegerArray()
+        {
+            var myIntegerList = new List<int?> {null, -1, 0, 1};
+
+            var actual = myIntegerList.ToArray();
+
+            Assert.IsInstanceOf<int?[]>(actual);
+            Assert.AreEqual(4, actual.Length);
+        }
+
+        [Test]
+        public void StringArray_ReturnsDelimitedList()
+        {
+            const string expected = "2,4,8,16,32,64";
+            var array = new[] { "2", "4", "8", "16", "32", "64" };
+
+            var actual = array.ToDelimitedList();
+
+            Assert.IsInstanceOf<string>(actual);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void IntegerArray_ReturnsDelimitedList()
+        {
+            const string expected = "1,2,4,8,16,32";
+            var array = new[] {1, 2, 4, 8, 16, 32};
+
+            var actual = array.ToDelimitedList();
+
+            Assert.IsInstanceOf<string>(actual);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
         [TestCase("99", 99)]
         [TestCase("0", 0)]
         public void TryParse_ReturnsResultWhenParsedSuccessfully(string myString, int expected)
