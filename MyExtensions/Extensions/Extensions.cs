@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace MyExtensions.Extensions
 {
@@ -49,17 +48,15 @@ namespace MyExtensions.Extensions
         public static double? NullableSum(this IEnumerable<double?> source)
         {
             double? sum = null;
-            foreach (double? v in source)
+            foreach (var v in source)
             {
-                if (v != null)
+                if (v == null) continue;
+                if (sum == null)
                 {
-                    if (sum == null)
-                    {
-                        sum = 0;
-                    }
-
-                    sum += v.GetValueOrDefault();
+                    sum = 0;
                 }
+
+                sum += v.GetValueOrDefault();
             }
 
             return sum;
@@ -83,17 +80,15 @@ namespace MyExtensions.Extensions
         public static int? NullableSum(this IEnumerable<int?> source)
         {
             int? sum = null;
-            foreach (int? v in source)
+            foreach (var v in source)
             {
-                if (v != null)
+                if (v == null) continue;
+                if (sum == null)
                 {
-                    if (sum == null)
-                    {
-                        sum = 0;
-                    }
-
-                    sum += v.GetValueOrDefault();
+                    sum = 0;
                 }
+
+                sum += v.GetValueOrDefault();
             }
 
             return sum;
@@ -112,25 +107,7 @@ namespace MyExtensions.Extensions
                 return null;
             }
 
-            return Round(value.Value, decimalPlaces);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="decimalPlaces"></param>
-        /// <returns></returns>
-        public static double Round(this double value, int decimalPlaces = 2)
-        {
-            try
-            {
-                return Math.Round(value, decimalPlaces);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                return 0;
-            }
+            return Math.Round(value.Value, decimalPlaces);
         }
 
         /// <summary>
