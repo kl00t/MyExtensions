@@ -9,6 +9,26 @@ namespace MyExtensions.UnitTests.Extensions
     public class ExtensionsTests
     {
         [Test]
+        [TestCase("0", 0)]
+        [TestCase("42", 42)]
+        public void ConvertToValue_ConvertsIntegerSuccessfully(string input, int expected)
+        {
+            var actual = input.ConvertToValue(0);
+            Assert.IsInstanceOf<int>(actual);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ConvertToValue_ReturnsDefaultValue()
+        {
+            var input = string.Empty;
+            const int expected = 0;
+            var actual = input.ConvertToValue(expected);
+            Assert.IsInstanceOf<int>(actual);
+            Assert.AreEqual(expected, actual);
+        }
+        
+        [Test]
         public void Round_ReturnsDefaultResultWhenNull()
         {
             double? input = null;
