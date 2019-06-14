@@ -40,17 +40,6 @@ namespace MyExtensions.UnitTests.Extensions
         }
 
         [Test]
-        public void ToArray_ReturnsIntegerArray()
-        {
-            var myIntegerList = new List<int?> {null, -1, 0, 1};
-
-            var actual = myIntegerList.ToArray();
-
-            Assert.IsInstanceOf<int?[]>(actual);
-            Assert.AreEqual(4, actual.Length);
-        }
-
-        [Test]
         public void StringArray_ReturnsDelimitedList()
         {
             const string expected = "2,4,8,16,32,64";
@@ -109,15 +98,6 @@ namespace MyExtensions.UnitTests.Extensions
             var actual = myGuidString.ToGuid();
             Assert.IsInstanceOf<Guid>(actual);
             Assert.AreEqual(Guid.Empty, actual);
-        }
-
-        [Test]
-        public void ToArray_TakesIEnumerableList_ReturnsArray()
-        {
-            var myList = new List<int?> { 0, 1, 2, 4, 8, 16, 32, 64 };
-            var actual = myList.ToArray();
-            Assert.IsInstanceOf<int?[]>(actual);
-            Assert.AreEqual(8, actual.Length);
         }
 
         [Test]

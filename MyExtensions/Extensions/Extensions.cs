@@ -67,16 +67,6 @@ namespace MyExtensions.Extensions
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static int[] ToArray(this IEnumerable<int?> source)
-        {
-            return source.Select(v => v ?? 0).ToArray();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
         public static int? NullableSum(this IEnumerable<int?> source)
         {
             int? sum = null;
