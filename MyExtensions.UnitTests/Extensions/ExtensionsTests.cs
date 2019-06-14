@@ -69,16 +69,6 @@ namespace MyExtensions.UnitTests.Extensions
         }
 
         [Test]
-        public void SplitStringToListInts_Returns_Empty_List_When_Exception_Caught()
-        {
-            var myString = "throw an exception";
-
-            var actual = myString.SplitStringToListInts(',');
-
-            Assert.That(actual, Is.InstanceOf<IEnumerable<int>>());
-        }
-
-        [Test]
         [TestCase("The quick brown fox jumps over the lazy dog", "fox", "The quick brown ")]
         [TestCase("The quick brown fox jumps over the lazy dog", "dog", "The quick brown fox jumps over the lazy ")]
         [TestCase("The quick brown fox jumps over the lazy dog", "", "The quick brown fox jumps over the lazy dog")]

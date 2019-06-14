@@ -14,15 +14,8 @@ namespace MyExtensions.Extensions
         /// <returns></returns>
         public static IEnumerable<int> SplitStringToListInts(this string value, char separator)
         {
-            try
-            {
-                return value.Split(separator).Select(int.Parse);
-            }
-            catch (Exception)
-            {
-                return new List<int>().AsEnumerable();
-            }
-        }
+            return value.Split(separator).Select(int.Parse);
+         }
 
         /// <summary>
         /// 
