@@ -7,6 +7,16 @@ namespace MyExtensions.Extensions
     public static class Extensions
     {
         /// <summary>
+        /// Returns the number of words within a phrase.
+        /// </summary>
+        /// <param name="phrase">The input phrase as a string.</param>
+        /// <returns>Returns the number of words.</returns>
+        public static int WordCount(this string phrase)
+        {
+            return phrase.Split(new[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>

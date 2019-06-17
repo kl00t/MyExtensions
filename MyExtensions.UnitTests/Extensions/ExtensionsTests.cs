@@ -9,6 +9,14 @@ namespace MyExtensions.UnitTests.Extensions
     public class ExtensionsTests
     {
         [Test]
+        [TestCase("", 0)]
+        [TestCase("This sentence has five words.", 5)]
+        public void WordCount_Extension_ReturnsCorrectNumberOfWords(string phrase, int expected)
+        {
+            Assert.AreEqual(expected, phrase.WordCount());
+        }
+
+        [Test]
         [TestCase("0", 0)]
         [TestCase("42", 42)]
         public void ConvertToValue_ConvertsIntegerSuccessfully(string input, int expected)
