@@ -9,11 +9,11 @@ namespace MyExtensions.Extensions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static bool IsNumeric(this string s)
+        public static bool IsNumeric(this string value)
         {
-            return float.TryParse(s, out _);
+            return long.TryParse(value, System.Globalization.NumberStyles.Integer, System.Globalization.NumberFormatInfo.InvariantInfo, out _);
         }
 
         /// <summary>
