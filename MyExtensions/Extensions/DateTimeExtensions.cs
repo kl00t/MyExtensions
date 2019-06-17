@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Threading;
 
 namespace MyExtensions.Extensions
 {
@@ -14,13 +12,23 @@ namespace MyExtensions.Extensions
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
+        public static bool IsLeapYear(this DateTime value)
+        {
+            return (DateTime.DaysInMonth(value.Year, 2) == 29);
+        }
+
+        /// <summary>
+        /// Returns true if the date is a weekend day.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static bool IsWeekend(this DateTime value)
         {
             return value.DayOfWeek == DayOfWeek.Sunday || value.DayOfWeek == DayOfWeek.Saturday;
         }
 
         /// <summary>
-        /// 
+        /// Returns true if the date is a week day.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -30,7 +38,7 @@ namespace MyExtensions.Extensions
         }
 
         /// <summary>
-        /// 
+        /// Takes a string date and returns formatted string date 01 Apr 2019
         /// </summary>
         /// <param name="period"></param>
         /// <returns></returns>
@@ -53,7 +61,7 @@ namespace MyExtensions.Extensions
         }
 
         /// <summary>
-        /// 
+        /// Takes date and returns a formatted string 01-04-2019
         /// </summary>
         /// <param name="dateTime"></param>
         /// <returns></returns>
@@ -63,7 +71,7 @@ namespace MyExtensions.Extensions
         }
 
         /// <summary>
-        /// 
+        /// Returns a string representing the day number.
         /// </summary>
         /// <param name="period"></param>
         /// <returns></returns>
@@ -91,7 +99,7 @@ namespace MyExtensions.Extensions
         }
 
         /// <summary>
-        /// 
+        /// Returns a string representing the month number.
         /// </summary>
         /// <param name="period"></param>
         /// <returns></returns>
@@ -135,7 +143,7 @@ namespace MyExtensions.Extensions
         /// <returns></returns>
         public static string ToQuarter(this string period)
         {
-            return String.IsNullOrEmpty(period) ? String.Empty : $"Q{period}";
+            return string.IsNullOrEmpty(period) ? string.Empty : $"Q{period}";
         }
 
         /// <summary>
@@ -228,6 +236,16 @@ namespace MyExtensions.Extensions
                 .OrderBy(x => x)
                 .ThenBy(x => !x.HasValue)
                 .Last();
+        }
+
+        /// <summary>
+        /// Returns the date of the last day of the month.
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static DateTime GetLastDayOfMonth(this DateTime dateTime)
+        {
+            return new DateTime(dateTime.Year, dateTime.Month, 1).AddMonths(1).AddDays(-1);
         }
     }
 }

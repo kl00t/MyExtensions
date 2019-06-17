@@ -9,6 +9,28 @@ namespace MyExtensions.UnitTests.Extensions
     public class DateTimeExtensionsTests
     {
         [Test]
+        public void IsLeapYear_ReturnsTrueWhenLeapYear()
+        {
+            var date = new DateTime(2020, 1, 1);
+            Assert.IsTrue(date.IsLeapYear());
+        }
+
+        [Test]
+        public void IsLeapYear_ReturnsFalseWhenNotLeapYear()
+        {
+            var date = new DateTime(2019, 1, 1);
+            Assert.IsFalse(date.IsLeapYear());
+        }
+
+        [Test]
+        public void GetLastDayOfMonth_ReturnsCorrectResult()
+        {
+            var date = new DateTime(2019, 2, 1);
+            var expected = new DateTime(2019, 2, 28);
+            Assert.AreEqual(expected, date.GetLastDayOfMonth());
+        }
+
+        [Test]
         public void IsWeekend_ReturnTrueWhenDateIsWeekend()
         {
             var date = new DateTime(2019, 6, 16);

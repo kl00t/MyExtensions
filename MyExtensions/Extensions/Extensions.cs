@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace MyExtensions.Extensions
 {
+    /// <summary>
+    /// http://extensionmethod.net/csharp
+    /// </summary>
     public static class Extensions
     {
         /// <summary>
