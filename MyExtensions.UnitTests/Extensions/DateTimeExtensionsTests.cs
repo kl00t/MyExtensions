@@ -9,6 +9,34 @@ namespace MyExtensions.UnitTests.Extensions
     public class DateTimeExtensionsTests
     {
         [Test]
+        public void IsWeekend_ReturnTrueWhenDateIsWeekend()
+        {
+            var date = new DateTime(2019, 6, 16);
+            Assert.IsTrue(date.IsWeekend());
+        }
+
+        [Test]
+        public void IsWeekend_ReturnFalseWhenDateIsNotWeekend()
+        {
+            var date = new DateTime(2019, 6, 17);
+            Assert.IsFalse(date.IsWeekend());
+        }
+
+        [Test]
+        public void IsWeekDay_ReturnsFalseWhenDateIsNotWeekDay()
+        {
+            var date = new DateTime(2019, 6, 16);
+            Assert.IsFalse(date.IsWeekDay());
+        }
+
+        [Test]
+        public void IsWeekDay_ReturnsTrueWhenDateIsWeekDay()
+        {
+            var date = new DateTime(2019, 6, 17);
+            Assert.IsTrue(date.IsWeekDay());
+        }
+
+        [Test]
         public void ToDateString_ReturnsEmptyStringWithIncorrectFormat()
         {
             const string myDateString = "20180231"; // 31st February 2018

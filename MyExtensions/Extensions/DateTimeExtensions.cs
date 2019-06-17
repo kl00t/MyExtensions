@@ -2,11 +2,33 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
+using System.Threading;
 
 namespace MyExtensions.Extensions
 {
     public static class DateTimeExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsWeekend(this DateTime value)
+        {
+            return value.DayOfWeek == DayOfWeek.Sunday || value.DayOfWeek == DayOfWeek.Saturday;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsWeekDay(this DateTime value)
+        {
+            return !value.IsWeekend();
+        }
+
         /// <summary>
         /// 
         /// </summary>

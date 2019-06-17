@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MyExtensions.Enum;
 using MyExtensions.Extensions;
 using NUnit.Framework;
 
@@ -8,6 +9,19 @@ namespace MyExtensions.UnitTests.Extensions
     [TestFixture]
     public class ExtensionsTests
     {
+        [Test]
+        [TestCase("Mon", Day.Mon)]
+        [TestCase("Tue", Day.Tue)]
+        [TestCase("Wed", Day.Wed)]
+        [TestCase("Thu", Day.Thu)]
+        [TestCase("Fri", Day.Fri)]
+        [TestCase("Sat", Day.Sat)]
+        [TestCase("Sun", Day.Sun)]
+        public void ToEnum_Method_ReturnsCorrectEnum(string input, Day day)
+        {
+            Assert.AreEqual(day, input.ToEnum<Day>());
+        }
+
         [Test]
         [TestCase("-1", true)]
         [TestCase("0", true)]
