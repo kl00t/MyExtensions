@@ -7,7 +7,5 @@ namespace MyExtensions.Helpers
         DateTime GetDateToday();
 
         DateTime GetDateTimeNow();
-
-        DateTime CalculateLocalDate(int utcOffset);
     }
 }

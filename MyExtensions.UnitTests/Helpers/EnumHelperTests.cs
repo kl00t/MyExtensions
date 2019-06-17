@@ -19,5 +19,11 @@ namespace MyExtensions.UnitTests.Helpers
         {
             Assert.AreEqual(expected, EnumHelper<Day>.GetEnumDescription(day.ToString()));
         }
+
+        [Test]
+        public void GetEnumDescription_ReturnsEmptyStringWithNullProvided()
+        {
+            Assert.AreEqual(string.Empty, EnumHelper<Day>.GetEnumDescription(null));
+        }
     }
 }

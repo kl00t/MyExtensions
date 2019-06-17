@@ -67,7 +67,9 @@ namespace MyExtensions.UnitTests.Helpers
         [TestCase(7, 10, 3)]
         [TestCase(6, 10, 4)]
         [TestCase(5, 10, 5)]
-        public void Difference_ReturnsCorrectResult(double originalNumber, double newNumber, double expected)
+        [TestCase(null, null, null)]
+        [TestCase(0, 0, 0)]
+        public void Difference_ReturnsCorrectResult(double? originalNumber, double ?newNumber, double? expected)
         {
             var actual = CalculationHelper.Difference(originalNumber, newNumber);
             Assert.AreEqual(expected, actual);
@@ -81,6 +83,17 @@ namespace MyExtensions.UnitTests.Helpers
         public void Variance_ReturnsCorrectResult(int? thisPeriod, int? comparisonPeriod, double? expected)
         {
             var actual = CalculationHelper.Variance(thisPeriod, comparisonPeriod);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [TestCase(80, 100, 0.8)]
+        [TestCase(150, 3, 50)]
+        [TestCase(null, null, null)]
+        [TestCase(0, 0, 0)]
+        public void AverageTransactionValue_ReturnsCorrectResult(double? salesValue, int? salesQuantity, double? expected)
+        {
+            var actual = CalculationHelper.AverageTransactionValue(salesValue, salesQuantity);
             Assert.AreEqual(expected, actual);
         }
 

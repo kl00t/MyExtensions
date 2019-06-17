@@ -29,17 +29,5 @@ namespace MyExtensions.UnitTests.Extensions
 
             Assert.AreEqual(expected, actual);
         }
-
-        [Test]
-        public void ToHtml_Returns_String_To_Html()
-        {
-            var expected = "<p>\r\nThis is my string\r\n</p>\r\n";
-
-            var myString = "This is my string";
-
-            var result = myString.ToHtml();
-
-            Assert.That(result, Is.EqualTo(expected));
-        }
     }
 }

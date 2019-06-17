@@ -30,11 +30,6 @@ namespace MyExtensions.Helpers
         public static double Difference(double originalNumber, double newNumber)
         {
             var calc = newNumber - originalNumber;
-            if (double.IsInfinity(calc) || double.IsNaN(calc))
-            {
-                return 0;
-            }
-
             return calc;
         }
 

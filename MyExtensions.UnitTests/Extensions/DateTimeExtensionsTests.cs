@@ -287,57 +287,5 @@ namespace MyExtensions.UnitTests.Extensions
 
             Assert.IsFalse(result);
         }
-
-        [Test]
-        public void DateExtension_Returns_Correct_Response_using_TestDataSource([ValueSource(nameof(_testData))]TestData testData)
-        {
-            var result = testData.DateToCheck.IsInRange(testData.StartDate, testData.EndDate);
-            Assert.AreEqual(testData.ExpectedResult, result);
-        }
-
-        public class TestData
-        {
-            public DateTime DateToCheck { get; set; }
-            public DateTime StartDate{ get; set; }
-            public DateTime EndDate { get; set; }
-            public bool ExpectedResult{ get; set; }
-
-            public override string ToString()
-            {
-                return
-                    $"{nameof(TestData)} = DateToCheck : {DateToCheck}; StartDate : {StartDate}; EndDate : {EndDate}; ExpectedResult : {ExpectedResult}";
-            }
-        }
-
-        private static readonly TestData[] _testData = {
-            new TestData
-            {
-                DateToCheck = new DateTime(2018,3,25),
-                StartDate = new DateTime(2018,3,25),
-                EndDate = new DateTime(2018,3,30),
-                ExpectedResult= true
-            },
-            new TestData
-            {
-                DateToCheck = new DateTime(2018,3,25),
-                StartDate = new DateTime(2018,3,24),
-                EndDate = new DateTime(2018,3,25),
-                ExpectedResult= true
-            },
-            new TestData
-            {
-                DateToCheck = new DateTime(2018,3,25),
-                StartDate = new DateTime(2018,3,25),
-                EndDate = new DateTime(2018,3,30),
-                ExpectedResult= true
-            },
-            new TestData
-            {
-                DateToCheck = new DateTime(2018,3,25),
-                StartDate = new DateTime(2018,3,26),
-                EndDate = new DateTime(2018,3,30),
-                ExpectedResult= false
-            }
-        };
     }
 }

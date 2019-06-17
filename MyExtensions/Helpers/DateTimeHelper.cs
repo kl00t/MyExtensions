@@ -13,10 +13,5 @@ namespace MyExtensions.Helpers
         {
             return DateTime.Now;
         }
-
-        public DateTime CalculateLocalDate(int utcOffset)
-        {
-            return DateTime.UtcNow.AddHours(utcOffset);
-        }
     }
 }
