@@ -7,6 +7,16 @@ namespace MyExtensions.Extensions
     public static class Extensions
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static bool IsNumeric(this string s)
+        {
+            return float.TryParse(s, out _);
+        }
+
+        /// <summary>
         /// Returns the number of words within a phrase.
         /// </summary>
         /// <param name="phrase">The input phrase as a string.</param>

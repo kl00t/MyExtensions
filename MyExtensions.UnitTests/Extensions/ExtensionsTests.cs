@@ -9,6 +9,17 @@ namespace MyExtensions.UnitTests.Extensions
     public class ExtensionsTests
     {
         [Test]
+        [TestCase("-1", true)]
+        [TestCase("0", true)]
+        [TestCase("1", true)]
+        [TestCase("", false)]
+        [TestCase("not a number", false)]
+        public void IsNumeric_ReturnsCorrectResult(string input, bool expected)
+        {
+            Assert.AreEqual(expected, input.IsNumeric());
+        }
+
+        [Test]
         [TestCase("", 0)]
         [TestCase("This sentence has five words.", 5)]
         public void WordCount_Extension_ReturnsCorrectNumberOfWords(string phrase, int expected)
