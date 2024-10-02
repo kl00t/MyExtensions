@@ -131,7 +131,7 @@ namespace MyExtensions.UnitTests.Extensions
         public void TryParse_ReturnsDefaultResultWhenNotParsedSuccessfully(string myString, int expected)
         {
             var actual = myString.TryParse(0);
-            Assert.AreEqual(0, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -233,7 +233,7 @@ namespace MyExtensions.UnitTests.Extensions
         [Test]
         public void IntegerArray_ReturnsCorrectResult()
         {
-            int[] myArray = { 1, 2, 3, 4 };
+            int[] myArray = [1, 2, 3, 4];
 
             const string expected = "('1','2','3','4')";
 
@@ -245,7 +245,7 @@ namespace MyExtensions.UnitTests.Extensions
         [Test]
         public void StringArray_ReturnsCorrectResult()
         {
-            string[] myArray = { "4", "3", "2", "1" };
+            string[] myArray = ["4", "3", "2", "1"];
 
             const string expected = "('4','3','2','1')";
 
@@ -257,7 +257,7 @@ namespace MyExtensions.UnitTests.Extensions
         [Test]
         public void Array_ReturnsCorrectResultWithNullSeparator()
         {
-            string[] myArray = { "10", "20", "30", "40" };
+            string[] myArray = ["10", "20", "30", "40"];
 
             const string expected = "('10','20','30','40')";
 
@@ -269,7 +269,7 @@ namespace MyExtensions.UnitTests.Extensions
         [Test]
         public void Array_ReturnsCorrectSingleResult()
         {
-            string[] myArray = { "10" };
+            string[] myArray = ["10"];
 
             const string expected = "('10')";
 

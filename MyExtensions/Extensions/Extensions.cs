@@ -4,9 +4,6 @@ using System.Linq;
 
 namespace MyExtensions.Extensions
 {
-    /// <summary>
-    /// http://extensionmethod.net/csharp
-    /// </summary>
     public static class Extensions
     {
         /// <summary>
@@ -31,6 +28,8 @@ namespace MyExtensions.Extensions
             return long.TryParse(value, System.Globalization.NumberStyles.Integer, System.Globalization.NumberFormatInfo.InvariantInfo, out _);
         }
 
+        private static readonly char[] separator = [' ', '.', '?'];
+
         /// <summary>
         /// Returns the number of words within a phrase.
         /// </summary>
@@ -38,7 +37,7 @@ namespace MyExtensions.Extensions
         /// <returns>Returns the number of words.</returns>
         public static int WordCount(this string phrase)
         {
-            return phrase.Split(new[] { ' ', '.', '?' }, StringSplitOptions.RemoveEmptyEntries).Length;
+            return phrase.Split(separator, StringSplitOptions.RemoveEmptyEntries).Length;
         }
 
         /// <summary>
@@ -61,7 +60,7 @@ namespace MyExtensions.Extensions
         public static string TrimStringIncludingAndAfterPhrase(this string value, string phrase)
         {
             var index = value.IndexOf(phrase, StringComparison.Ordinal);
-            return index > 0 ? value.Substring(0, index) : value;
+            return index > 0 ? value[..index] : value;
         }
 
         /// <summary>
@@ -86,10 +85,7 @@ namespace MyExtensions.Extensions
             foreach (var v in source)
             {
                 if (v == null) continue;
-                if (sum == null)
-                {
-                    sum = 0;
-                }
+                sum ??= 0;
 
                 sum += v.GetValueOrDefault();
             }
@@ -108,10 +104,7 @@ namespace MyExtensions.Extensions
             foreach (var v in source)
             {
                 if (v == null) continue;
-                if (sum == null)
-                {
-                    sum = 0;
-                }
+                sum ??= 0;
 
                 sum += v.GetValueOrDefault();
             }

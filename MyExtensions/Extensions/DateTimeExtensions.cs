@@ -77,25 +77,17 @@ namespace MyExtensions.Extensions
         /// <returns></returns>
         public static string ToDay(this string period)
         {
-            switch (period)
+            return period switch
             {
-                case "1":
-                    return "Sun";
-                case "2":
-                    return "Mon";
-                case "3":
-                    return "Tue";
-                case "4":
-                    return "Wed";
-                case "5":
-                    return "Thu";
-                case "6":
-                    return "Fri";
-                case "7":
-                    return "Sat";
-                default:
-                    return period;
-            }
+                "1" => "Sun",
+                "2" => "Mon",
+                "3" => "Tue",
+                "4" => "Wed",
+                "5" => "Thu",
+                "6" => "Fri",
+                "7" => "Sat",
+                _ => period,
+            };
         }
 
         /// <summary>
@@ -105,35 +97,22 @@ namespace MyExtensions.Extensions
         /// <returns></returns>
         public static string ToMonth(this string period)
         {
-            switch (period)
+            return period switch
             {
-                case "1":
-                    return "Jan";
-                case "2":
-                    return "Feb";
-                case "3":
-                    return "Mar";
-                case "4":
-                    return "Apr";
-                case "5":
-                    return "May";
-                case "6":
-                    return "Jun";
-                case "7":
-                    return "Jul";
-                case "8":
-                    return "Aug";
-                case "9":
-                    return "Sep";
-                case "10":
-                    return "Oct";
-                case "11":
-                    return "Nov";
-                case "12":
-                    return "Dec";
-                default:
-                    return period;
-            }
+                "1" => "Jan",
+                "2" => "Feb",
+                "3" => "Mar",
+                "4" => "Apr",
+                "5" => "May",
+                "6" => "Jun",
+                "7" => "Jul",
+                "8" => "Aug",
+                "9" => "Sep",
+                "10" => "Oct",
+                "11" => "Nov",
+                "12" => "Dec",
+                _ => period,
+            };
         }
 
         /// <summary>
